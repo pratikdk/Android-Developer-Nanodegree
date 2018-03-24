@@ -20,9 +20,6 @@ import java.util.List;
  * Created by Pratik on 17-03-2018.
  */
 
-// http://api.themoviedb.org/3/discover/movie?api_key=3d27da90a1e868234c34efb8f23aef8e&sort_by=popularity.desc&primary_release_year=2017
-// http://api.themoviedb.org/3/movie/popular?api_key=3d27da90a1e868234c34efb8f23aef8e
-
 public class QueryUtils {
     private static final String TAG = QueryUtils.class.getSimpleName();
 
@@ -32,7 +29,7 @@ public class QueryUtils {
     private static final String TMDB_BASE_URL = "https://api.themoviedb.org/3/";
 
     /* API key */
-    private static final String API_KEY = "";// Apply API Key here
+    private static final String API_KEY = ""; // Apply API Key here
 
     /* Query Base Path */
     private static final String BASE_PATH_DISCOVER = "discover";
