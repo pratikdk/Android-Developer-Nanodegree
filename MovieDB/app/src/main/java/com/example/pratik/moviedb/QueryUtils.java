@@ -29,7 +29,7 @@ public class QueryUtils {
     private static final String TMDB_BASE_URL = "https://api.themoviedb.org/3/";
 
     /* API key */
-    private static final String API_KEY = ""; // Apply API Key here
+    private static final String API_KEY = "";  // Apply API Key here
 
     /* Query Base Path */
     private static final String BASE_PATH_MOVIE = "movie";
