@@ -4,23 +4,21 @@
 
     <string name="settings_sort_by_key" translatable="false">sort_by</string>
     <string name="settings_sort_by_value_default" translatable="false">@string/settings_sort_by_value_popular</string>
-    <string name="settings_sort_by_value_popular" translatable="false">popularity.desc</string>
-    <string name="settings_sort_by_value_top_rated" translatable="false">vote_average.desc</string>
-
-    <string name="settings_release_year_key" translatable="false">primary_release_year</string>
-    <string name="settings_release_year_default" translatable="false">@string/settings_release_year_latest</string>
-    <string name="settings_release_year_latest" translatable="false">2017</string>
-    <string name="settings_release_year_all_time" translatable="false">all</string>
+    <string name="settings_sort_by_value_popular" translatable="false">popular</string>
+    <string name="settings_sort_by_value_top_rated" translatable="false">top_rated</string>
 
     <string-array name="movie_sort_array">
-        <item>Popular Latest</item>
-        <item>Top Rated Latest</item>
-        <item>Popular All Time</item>
-        <item>Top Rated All Time</item>
+        <item>Popular</item>
+        <item>Top Rated</item>
     </string-array>
 
     <string name="internet_error_message">An error has occurred, Please check your internet connection.</string>
     <string name="rating_label">Rating: </string>
     <string name="release_year_label">Release Date: </string>
     <string name="movie_info_label">Movie Info</string>
+
+    <string name="movie_title_default_value">Not Available</string>
+    <string name="rating_default_value">Not Available</string>
+    <string name="release_year_default_value">Not Available</string>
+    <string name="movie_info_default_value">Not Available</string>
 </resources>

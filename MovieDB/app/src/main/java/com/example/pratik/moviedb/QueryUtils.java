@@ -29,16 +29,16 @@ public class QueryUtils {
     private static final String TMDB_BASE_URL = "https://api.themoviedb.org/3/";
 
     /* API key */
-    private static final String API_KEY = ""; // Apply API Key here
+    private static final String API_KEY = "3d27da90a1e868234c34efb8f23aef8e"; // Apply API Key here
 
     /* Query Base Path */
-    private static final String BASE_PATH_DISCOVER = "discover";
     private static final String BASE_PATH_MOVIE = "movie";
+
+    /* Query Sort Path */
+    private static String sortPath = "";
 
     /* Query Parameters */
     private final static String API_PARAM = "api_key";
-    private final static String SORT_PARAM = "sort_by";
-    private final static String YEAR_PARAM = "primary_release_year";
 
     /**
      * Private constructor, for only direct access
@@ -51,11 +51,14 @@ public class QueryUtils {
      * Query the TMDB API and return an {@link Movie} ArrayList object
      * to represent list of movies based on the criteria applied
      */
-    public static List<Movie> fetchMovieDataList(String sortQuery, String yearQuery) {
+    public static List<Movie> fetchMovieDataList(String sortQuery) {
         Log.e(TAG, "Test: QueryUtils fetchMovieDataList() called.");
 
+        // Initialize sort path
+        sortPath = sortQuery;
+
         // Create URL Object
-        URL url = buildUrl(sortQuery, yearQuery);
+        URL url = buildUrl(sortPath);
 
         // Perform HTTP request using url and receive a JSON response back
         String movieListJson = null;
@@ -88,16 +91,13 @@ public class QueryUtils {
      * the query capabilities of the TMDB API that we are using.
      *
      * @param sortQuery The sort criteria
-     * @param yearQuery The release year
      * @return The URL to use to query the weather server.
      */
-    private static URL buildUrl(String sortQuery, String yearQuery) {
+    private static URL buildUrl(String sortQuery) {
         Uri builtUri = Uri.parse(TMDB_BASE_URL).buildUpon()
-                .appendPath(BASE_PATH_DISCOVER)
                 .appendPath(BASE_PATH_MOVIE)
+                .appendPath(sortQuery)
                 .appendQueryParameter(API_PARAM, API_KEY)
-                .appendQueryParameter(SORT_PARAM, sortQuery)
-                .appendQueryParameter(YEAR_PARAM, yearQuery)
                 .build();
 
         URL url = null;
@@ -151,14 +151,12 @@ public class QueryUtils {
         return movies;
     }
 
-    public static void modifyPreference(Context context, SharedPreferences prefs, String sortByValue, String releaseYearValue) {
+    public static void modifyPreference(Context context, SharedPreferences prefs, String sortByValue) {
         Log.e(TAG, "modifyPreference Called()");
         String sortByKey = context.getResources().getString(R.string.settings_sort_by_key);
-        String releaseYearKey = context.getResources().getString(R.string.settings_release_year_key);
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(sortByKey, sortByValue);
-        editor.putString(releaseYearKey, releaseYearValue);
         editor.apply();
     }
 }

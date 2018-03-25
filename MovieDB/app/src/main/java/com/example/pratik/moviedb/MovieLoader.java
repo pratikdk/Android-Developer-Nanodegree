@@ -14,12 +14,10 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
     public static final String TAG = MovieLoader.class.getName();
 
     private String mSortQuery;
-    private String mYearQuery;
 
-    public MovieLoader(Context context, String sortQuery, String yearQuery) {
+    public MovieLoader(Context context, String sortQuery) {
         super(context);
         mSortQuery = sortQuery;
-        mYearQuery = yearQuery;
     }
 
     @Override
@@ -31,11 +29,11 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     public List<Movie> loadInBackground() {
         Log.e(TAG, "Test: MovieLoader loadInBackground() called.");
-        if (mSortQuery == null || mYearQuery == null) {
+        if (mSortQuery == null) {
             return null;
         }
 
-        List<Movie> movieList = QueryUtils.fetchMovieDataList(mSortQuery, mYearQuery);
+        List<Movie> movieList = QueryUtils.fetchMovieDataList(mSortQuery);
         return movieList;
     }
 }

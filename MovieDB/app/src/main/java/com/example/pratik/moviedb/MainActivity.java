@@ -113,12 +113,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_sort_by_key),
                 getString(R.string.settings_sort_by_value_default));
 
-        String releaseYear = sharedPrefs.getString(
-                getString(R.string.settings_release_year_key),
-                getString(R.string.settings_release_year_default));
         Log.e(TAG, "SortBy value used: " + sortBy);
-        Log.e(TAG, "releaseYear value used: " + releaseYear);
-        return new MovieLoader(this, sortBy, releaseYear);
+        return new MovieLoader(this, sortBy);
     }
 
     @Override
@@ -167,37 +163,24 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
             String sortByString;
-            String releaseYearString;
             //Toast.makeText(context, "Spinner iTem: " + selectedItem, Toast.LENGTH_LONG).show();
 
             switch (selectedItemIndex) {
                 case 0:
                     sortByString = getString(R.string.settings_sort_by_value_popular);
-                    releaseYearString = getString(R.string.settings_release_year_latest);
                     break;
                 case 1:
                     sortByString = getString(R.string.settings_sort_by_value_top_rated);
-                    releaseYearString = getString(R.string.settings_release_year_latest);
-                    break;
-                case 2:
-                    sortByString = getString(R.string.settings_sort_by_value_popular);
-                    releaseYearString = getString(R.string.settings_release_year_all_time);
-                    break;
-                case 3:
-                    sortByString = getString(R.string.settings_sort_by_value_top_rated);
-                    releaseYearString = getString(R.string.settings_release_year_all_time);
                     break;
                 default:
                     sortByString = getString(R.string.settings_sort_by_value_default);
-                    releaseYearString = getString(R.string.settings_release_year_default);
                     break;
             }
             // Update Shared Preferences
             QueryUtils.modifyPreference(
                     context,
                     sharedPrefs,
-                    sortByString,
-                    releaseYearString);
+                    sortByString);
             // TODO: Refresh the View
             mMovieAdapter.clearListForUpdate();
             refreshLoader();
